@@ -1,0 +1,620 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PRACTICA 3: SE&Ntilde;ALES EN TIEMPO CONTINUO</title><meta name="generator" content="MATLAB 9.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-03-18"><meta name="DC.source" content="pratica_3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>PRACTICA 3: SE&Ntilde;ALES EN TIEMPO CONTINUO</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Integrantes</a></li><li><a href="#3">Objetivos</a></li><li><a href="#4">Introduccion.</a></li><li><a href="#5">PAYTHON</a></li><li><a href="#9">Desarrollo</a></li><li><a href="#10">EJERCICIO 1</a></li><li><a href="#24">EJERCICIO 2</a></li><li><a href="#31">EJERCICIO 3</a></li><li><a href="#35">EJERCICIO 4</a></li><li><a href="#42">EJERCICIO 5</a></li></ul></div><h2 id="1">Integrantes</h2><div><ul><li>Barrera Martinez Paola Angelica</li><li>Espino Chavez Brandon Daniel</li><li>Gonzalez Lopez Dani</li><li>Villavicencio Salinas Miguel Angel</li><li>Zetina Arellano Luis Enrique</li></ul></div><h2 id="3">Objetivos</h2><div><ul><li>Manipulaci&oacute;n b&aacute;sica de MATLAB</li><li>Gr&aacute;ficas de se&ntilde;ales reales y complejas continuas</li><li>Transformaci&oacute;n de se&ntilde;ales continuas (escalamientos y traslaciones)</li><li>Calculo de energ&iacute;a y potencia de se&ntilde;ales continuas</li></ul></div><h2 id="4">Introduccion.</h2><p>Se investigo c&oacute;mo se grafica con python y con esto se resolvi&oacute; el problema 4. Este es el resultado obtenido en python</p><h2 id="5">PAYTHON</h2><p>Programar graficas en paython es muy similar a graficae en MATLAB como se puede obserbar en la imagen del codigo</p><p><img vspace="5" hspace="5" src="Codigo.png" alt=""> </p><p>De esta forma es como se observan las graficas en python</p><p><img vspace="5" hspace="5" src="Problema 4.png" alt=""> </p><h2 id="9">Desarrollo</h2><pre class="codeinput"><span class="comment">% Metodos para trabajar se&ntilde;ales dentro de MATLAB</span>
+</pre><h2 id="10">EJERCICIO 1</h2><p><i><b>FUNCIONES ANONIMAS</b></i></p><p>Las funciones an&oacute;nimas proveen una representacion simbolica de una funci&oacute;n definida en operadores, funciones u otras funciones anonimas de MATLAB.</p><p>Definimos una funcion exponencial senusoidal:</p><pre class="codeinput">f = @ (t) exp(-t).* cos(2*pi*t);
+</pre><p>Usamos el simbolo @ para identificar a la expresion como una funcion anonima, a la que se le asigna el nombre de f. Los parentesis seguidos de @ identifican la variable independiente o argumento de entrada.</p><p>Para evaluar a t en f(t), asignamos como t=0; f(t)</p><p><b>Vectores de entrada</b></p><p>Los vectores de entrada permiten la evaluacion de multiples valores simultanemamente, por ejemplo:</p><pre class="codeinput">t=(-2:0.01:2);f(t);
+</pre><p><b>Graficaci&oacute;n</b></p><p>Para graficar la se&ntilde;al anterior, utilizamos los siguientes comandos</p><pre class="codeinput">plot(t,f(t));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'f(t)'</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="pratica_3_01.png" alt=""> <p><i><b>OPERADORES RELACIONALES Y ESCALON UNITARIO</b></i></p><p>Los operadores relacionales en MATLAB comparan dos elementos, y tenemos 6 operadores: <a href=",">,</a>,&lt;=,&gt;=,== and ~=.</p><p>El escalon unitario u(t) surge para muchas situaciones practicas, en este caso, definimos al escalon como</p><pre class="codeinput">u= @(tu) 1.0.*(tu&gt;=0);
+</pre><p>Definimos el vector de entrada y graficamos la se&ntilde;al</p><pre class="codeinput">tu = (-2:0.01:2); plot(tu,u(tu));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'u(t)'</span>);
+axis ([-2 2 -0.1 1.1]);
+</pre><img vspace="5" hspace="5" src="pratica_3_02.png" alt=""> <p>Podemos combinar los operadores relacionales con el logico AND (&amp;), OR (|) y negacion(~). Haciendo una representaci&oacute;n gr&aacute;fica tenemos:</p><pre class="codeinput">p=@(to) 1.0.*((to&gt;=0)&amp;(to&lt;1));
+to=(-1:0.01:2);
+plot(to,p(to));
+xlabel(<span class="string">'t'</span>);  ylabel(<span class="string">'p(t)=u(t)-u(t-1)'</span>);
+axis([-1 2 -0.1 1.1])
+</pre><img vspace="5" hspace="5" src="pratica_3_03.png" alt=""> <p><i><b>OPERADORES DE VISUALIZACION EN UNA VARIABLE INDEPENDIENTE</b></i></p><p>Com&uacute;nmente se encuentran dos operaciones sobre la variable independiente de una funci&oacute;n: desplazamiento y escalada</p><p>Consideramos la funcion g(t)= f(t) u(t)= e-t Cos(2*pi*t) u(t).</p><p>Para definirla en MATLAB tenemos:</p><pre class="codeinput">g = @(t) f(t).*u(tu);
+</pre><p>Ahora definimos constantes para el desplazamiento y escalada de la funcion; consideramos un factor de compresion de 2 y un desplazaminto de 1 unidad a la izquierda, por tanto</p><pre class="codeinput">tv= (-2:0.01:2);
+plot(tv,g(2*t+1));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'g(2t+1)'</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="pratica_3_04.png" alt=""> <p>Otros ejemplos son:</p><p>Para una inversion horizontal y desplazamiento de una unidad a la izquierda, tenemos:</p><pre class="codeinput">plot(tv,g(-t+1));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'g(-t+1)'</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="pratica_3_05.png" alt=""> <p>Si sumamos las dos transformaciones anteriores, h(t)= g(2*t+1)+g(-t+1), tenemos:</p><pre class="codeinput">plot(tv,g(2*t+1)+g(-t+1));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'h(t)'</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="pratica_3_06.png" alt=""> <p><i><b>INTEGRACION NUMERICA Y ESTIMACION DE LA SE&Ntilde;AL DE ENERG&Iacute;A</b></i></p><p>Para diversos c&aacute;lculos nos ayudamos de la integraci&oacute;n, y aunque &eacute;sta parezca simple la integraci&oacute;n num&eacute;rica proporciona una buena manera de verifcar resultados anal&iacute;ticos.</p><p>Para ejemplificar, consideramos una se&ntilde;al simple: x(t)= e-t(u(t)-u(t-1))</p><pre class="codeinput">x= @(te) exp(-te).*((te&gt;=0)&amp;(te&lt;1));
+te= (0:0.01:1);
+</pre><p>Definimos el valor de la energ&iacute;a</p><pre class="codeinput">E_x= sum(x(te).*x(te)*0.01);
+</pre><h2 id="24">EJERCICIO 2</h2><p>Para la se&ntilde;al x(t), se bosquejan cinco diferentes transformaciones.</p><div><ol><li>x(t-4)</li><li>x(t/1.5)</li><li>x(-t)</li><li>x(2t-4)</li><li>x(2-t)</li></ol></div><p>La funci&oacute;n original x(t), es:</p><pre class="codeinput">t1=(-10:0.1:10);
+    f1= @(t1) -t1.*((t1&gt;=-4)&amp;(t1&lt;=0));
+    f2= @(t1) t1.*((t1&gt;=0)&amp;(t1&lt;=2));
+ f3=@(t1) f1(t1)+f2(t1);
+
+plot(t1,f3(t1));
+axis([-5 3 -1 4.5]);
+
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'x(t)'</span>); grid;
+</pre><img vspace="5" hspace="5" src="pratica_3_07.png" alt=""> <p>Ahora gr&aacute;ficamos cada una de las transformaciones propuestas</p><p>Para a) x(t-4)</p><pre class="codeinput">plot(t1, f3(t1-4),<span class="string">'r'</span>);
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'x(t-4)'</span>); grid;
+axis ([-1 7 -0.5 4.5]);
+</pre><img vspace="5" hspace="5" src="pratica_3_08.png" alt=""> <p>Para b) x(t/1.5)</p><pre class="codeinput">plot(t1, f3(t1/1.5),<span class="string">'m'</span>);
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'x(t/1.5)'</span>); grid;
+axis ([-8 5 -1.5 4.5]);
+</pre><img vspace="5" hspace="5" src="pratica_3_09.png" alt=""> <p>Para c) x(-t)</p><pre class="codeinput">plot(t1, f3(-t1),<span class="string">'k'</span>);
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'x(-t)'</span>); grid;
+axis ([-3 6 -0.5 4.5]);
+</pre><img vspace="5" hspace="5" src="pratica_3_10.png" alt=""> <p>Para d) x(2*t-4)</p><pre class="codeinput">plot(t1, f3(2*t1-4),<span class="string">'g'</span>);
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'x(2t-4)'</span>); grid;
+axis ([-1 5 -0.5 4.5]);
+</pre><img vspace="5" hspace="5" src="pratica_3_11.png" alt=""> <p>Para e) x(2-t)</p><pre class="codeinput">plot(t1, f3(2-t1),<span class="string">'c'</span>);
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'x(2-t)'</span>); grid;
+axis ([-3 9 -0.5 4.5]);
+</pre><img vspace="5" hspace="5" src="pratica_3_12.png" alt=""> <h2 id="31">EJERCICIO 3</h2><p>Resuelve el problema 1.11-1, los ejes deben mostrarse en el origen adem&aacute;s de la edici&oacute;n de tu preferencia.</p><p>Proporcionar c&oacute;digo en MATLAB y resultados que tracen la porci&oacute;n impar xo(t) de la funci&oacute;n x(t)=2^&#8722;t cos(2&#960;t)u(t&#8722;&#960; ) en un intervalo de longitud adecuada utilizando un n&uacute;mero adecuado de puntos.</p><p>Se resolvio este problema del libro de Lathi (versi&oacute;n de clase).</p><p>Definici&oacute;n de la funci&oacute;n x(t)</p><pre class="codeinput">t = linspace(0, 12, 1000);  <span class="comment">% Definimos el intervalo de tiempo</span>
+u = @(t) (t &gt;= 0);          <span class="comment">% Funci&oacute;n escal&oacute;n unitario</span>
+x = @(t) 2.^(-t) .* cos(2*pi*t) .* u(t - pi);  <span class="comment">% Definimos la funci&oacute;n x(t)</span>
+</pre><p>Calculamos la porci&oacute;n impar xo(t)</p><pre class="codeinput">xo = @(t) 0.5 * (x(t) - x(-t));  <span class="comment">% Porci&oacute;n impar de x(t)</span>
+</pre><p>Gr&aacute;fico de xo(t)</p><pre class="codeinput">figure;
+plot(t, xo(t), <span class="string">'b'</span>, <span class="string">'LineWidth'</span>, 2);
+grid <span class="string">on</span>;
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'xo(t)'</span>);
+title(<span class="string">'Porci&oacute;n impar de x(t)'</span>);
+axis([-2 4 -1 1]);  <span class="comment">% Establecemos l&iacute;mites de los ejes</span>
+ax = gca;  <span class="comment">% Obtenemos los ejes actuales</span>
+ax.XAxisLocation = <span class="string">'origin'</span>;  <span class="comment">% Movemos el eje x al origen</span>
+ax.YAxisLocation = <span class="string">'origin'</span>;  <span class="comment">% Movemos el eje y al origen</span>
+ax.Box = <span class="string">'off'</span>;  <span class="comment">% Quitamos el recuadro alrededor del gr&aacute;fico</span>
+ax.XAxis.TickLength = [0.02 0.02];  <span class="comment">% Longitud de las marcas en el eje x</span>
+ax.YAxis.TickLength = [0.02 0.02];  <span class="comment">% Longitud de las marcas en el eje y</span>
+ax.FontSize = 12;  <span class="comment">% Tama&ntilde;o de fuente</span>
+</pre><img vspace="5" hspace="5" src="pratica_3_13.png" alt=""> <h2 id="35">EJERCICIO 4</h2><p>Se resolvio y grafico una sumatoria por medio de MATLAB y paython, la sumatoria es:</p><p><img src="pratica_3_eq13266966819963588929.png" alt="$$ x(t) = \sum_{k=1}^{10} cos(2\pi k t)$$"></p><p>MATLAB Se construyeron 4 graficas para 4 diferentes rangos de "t"</p><p>Subgr&aacute;fico 1 Para el rango t1</p><pre class="codeinput">t1 = linspace(-10,10,100); <span class="comment">% Rango 1 de -10 a 10 de 1 en 1</span>
+x1 = linspace(0,0,100);
+<span class="keyword">for</span> k = 1:10
+x1= x1 + cos(2*pi*t1*k);
+<span class="keyword">end</span>
+subplot(2, 2, 1);
+plot(t1, x1);
+title(<span class="string">"Grafica Rango t1"</span>)
+plano= gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="pratica_3_14.png" alt=""> <p>Subgr&aacute;fico 2 Para el rango t2</p><pre class="codeinput">t2 = linspace(-5,5,100); <span class="comment">% Rango 2 de -5 a 5 de 1 en 1</span>
+x2 = linspace(0,0,100);
+<span class="keyword">for</span> k = 1:10
+x2= x2 + cos(2*pi*t2*k);
+<span class="keyword">end</span>
+subplot(2, 2, 2);
+plot(t2, x2);
+title(<span class="string">"Grafica Rango t2"</span>)
+
+
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="pratica_3_15.png" alt=""> <p>Subgr&aacute;fico 3 Para el rango t3</p><pre class="codeinput">t3 = linspace(0,20,100); <span class="comment">% Rango 3 de 0 a 20 de 1 en 1</span>
+x3 = linspace(0,0,100);
+<span class="keyword">for</span> k = 1:10
+x3= x3 + cos(2*pi*t3*k);
+<span class="keyword">end</span>
+subplot(2, 2, 3);
+plot(t3, x3);
+title(<span class="string">"Grafica Rango t3"</span>)
+
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="pratica_3_16.png" alt=""> <p>Subgr&aacute;fico 4 P+ara el rango t4</p><pre class="codeinput">t4 = linspace(-1, 1, 1000); <span class="comment">% Rango 4 de -1 a 1 con 1000 elementos</span>
+x4 = linspace(0,0,1000);
+<span class="keyword">for</span> k = 1:10
+x4= x4 + cos(2*pi*t4*k);
+<span class="keyword">end</span>
+subplot(2, 2, 4);
+plot(t4, x4);
+title(<span class="string">"Grafica Rango t4"</span>)
+
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="pratica_3_17.png" alt=""> <h2 id="42">EJERCICIO 5</h2><p>Declaracion de funciones anonimas</p><pre class="codeinput">u = @(t) 1.0*(t&gt;=0); t = -10:.001:10;
+x = @(t) exp(t*(1+2j*pi)).*u(-t);
+<span class="comment">% Graficas para distintos valores de a(0.5, 1, 2)</span>
+
+<span class="comment">%Inciso a)</span>
+subplot(1,3,1); plot(real(x(t)),imag(x(0.5*t)),<span class="string">'k-'</span>); grid <span class="string">on</span>
+xlabel(<span class="string">'Re(x(t))'</span>); ylabel(<span class="string">'Im(x(0.5t))'</span>); axis([-1 1 -1 1]);
+subplot(1,3,2); plot(real(x(t)),imag(x(t)),<span class="string">'k-'</span>); grid <span class="string">on</span>
+xlabel(<span class="string">'Re(x(t))'</span>); ylabel(<span class="string">'Im(x(t))'</span>); axis([-1 1 -1 1]);
+subplot(1,3,3); plot(real(x(t)),imag(x(2*t)),<span class="string">'k-'</span>); grid <span class="string">on</span>
+xlabel(<span class="string">'Re(x(t))'</span>); ylabel(<span class="string">'Im(x(2t))'</span>); axis([-1 1 -1 1]);
+</pre><img vspace="5" hspace="5" src="pratica_3_18.png" alt=""> <p>Declaracion de y(t) y su grafica</p><pre class="codeinput"><span class="comment">%Inciso b)</span>
+y = @(t) real(2*x((-5-t)/2));
+figure;
+plot(t,y(t),<span class="string">'k-'</span>); axis([-10 10 -3 3]);
+grid <span class="string">on</span>; xlabel(<span class="string">'t'</span>);
+ ylabel( <span class="string">'y(t)'</span>);
+ set(gca,<span class="string">'xtick'</span>,-10:5:10,<span class="string">'ytick'</span>,-2:0.5:2);
+</pre><img vspace="5" hspace="5" src="pratica_3_19.png" alt=""> <p>Usando integracion numerica para el calculo de enrgia de x(t)</p><pre class="codeinput"> <span class="comment">%Inciso c)</span>
+x2 = @(t) x(t).*conj(x(t)); Ex = integral(x2,-100,0);
+</pre><p>usando integracion numerica para el calculo de energia de y(t)</p><pre class="codeinput"><span class="comment">% Inciso d)</span>
+ y2 = @(t) y(t).*conj(y(t));
+ Ey = integral(y2,-5,100);
+</pre><p>Grafica de x(t) en [-10,10]</p><pre class="codeinput"><span class="comment">% Inciso e)</span>
+ figure;
+ plot(t,x(t),<span class="string">'k-'</span>); grid <span class="string">on</span>
+</pre><pre class="codeoutput">Warning: Imaginary parts of complex X and/or Y arguments ignored. 
+</pre><img vspace="5" hspace="5" src="pratica_3_20.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% PRACTICA 3: SEÑALES EN TIEMPO CONTINUO
+%
+%% Integrantes
+%%
+% 
+% * Barrera Martinez Paola Angelica
+% * Espino Chavez Brandon Daniel
+% * Gonzalez Lopez Dani
+% * Villavicencio Salinas Miguel Angel
+% * Zetina Arellano Luis Enrique
+% 
+%
+%% Objetivos
+% * Manipulación básica de MATLAB
+% * Gráficas de señales reales y complejas continuas
+% * Transformación de señales continuas (escalamientos y traslaciones)
+% * Calculo de energía y potencia de señales continuas
+%
+%% Introduccion.
+% Se investigo cómo se grafica con python y con esto se resolvió el problema 4. 
+% Este es el resultado obtenido en python 
+%% PAYTHON
+% Programar graficas en paython es muy similar a graficae en MATLAB como se
+% puede obserbar en la imagen del codigo
+%%
+% 
+% <<Codigo.png>>
+% 
+% 
+%%
+% De esta forma es como se observan las graficas en python
+%%
+% 
+% <<Problema 4.png>>
+% 
+%% Desarrollo
+
+% Metodos para trabajar señales dentro de MATLAB
+
+%% EJERCICIO 1
+%
+% _*FUNCIONES ANONIMAS*_ 
+%
+% Las funciones anónimas proveen una representacion simbolica de una 
+% función definida en operadores, funciones u otras funciones 
+% anonimas de MATLAB. 
+%
+% Definimos una funcion exponencial senusoidal:  
+%
+
+f = @ (t) exp(-t).* cos(2*pi*t);
+
+%% 
+% Usamos el simbolo @ para identificar a la expresion como una funcion
+% anonima, a la que se le asigna el nombre de f. Los parentesis seguidos de 
+% @ identifican la variable independiente o argumento de entrada.
+%
+%% 
+% Para evaluar a t en f(t), asignamos como t=0; f(t)
+%% 
+% *Vectores de entrada* 
+%
+% Los vectores de entrada permiten la evaluacion de multiples valores
+% simultanemamente, por ejemplo:
+
+t=(-2:0.01:2);f(t);
+
+ 
+%%
+% *Graficación*
+%
+% Para graficar la señal anterior, utilizamos los siguientes comandos
+plot(t,f(t));
+xlabel('t'); 
+ylabel('f(t)'); 
+grid; 
+
+
+%%
+% _*OPERADORES RELACIONALES Y ESCALON UNITARIO*_ 
+% 
+% Los operadores relacionales en MATLAB comparan dos elementos, y tenemos 6
+% operadores: <,>,<=,>=,== and ~=. 
+%
+% El escalon unitario u(t) surge para muchas situaciones practicas, en este
+% caso, definimos al escalon como 
+
+u= @(tu) 1.0.*(tu>=0);
+%% 
+% Definimos el vector de entrada y graficamos la señal
+
+tu = (-2:0.01:2); plot(tu,u(tu));
+xlabel('t'); 
+ylabel('u(t)');
+axis ([-2 2 -0.1 1.1]);
+
+
+%%
+% Podemos combinar los operadores relacionales con el logico AND (&), OR
+% (|) y negacion(~). 
+% Haciendo una representación gráfica tenemos: 
+
+p=@(to) 1.0.*((to>=0)&(to<1));
+to=(-1:0.01:2); 
+plot(to,p(to));
+xlabel('t');  ylabel('p(t)=u(t)-u(t-1)');
+axis([-1 2 -0.1 1.1])
+
+
+%% 
+% _*OPERADORES DE VISUALIZACION EN UNA VARIABLE INDEPENDIENTE*_
+% 
+% Comúnmente se encuentran dos operaciones sobre la variable independiente 
+% de una función: desplazamiento y escalada
+%
+% Consideramos la funcion g(t)= f(t) u(t)= e-t Cos(2*pi*t) u(t).
+%
+% Para definirla en MATLAB tenemos:
+
+g = @(t) f(t).*u(tu);
+
+%% 
+% Ahora definimos constantes para el desplazamiento y escalada de la
+% funcion; consideramos un factor de compresion de 2 y un desplazaminto de
+% 1 unidad a la izquierda, por tanto
+
+tv= (-2:0.01:2);
+plot(tv,g(2*t+1));
+xlabel('t'); ylabel('g(2t+1)'); 
+grid;
+%% 
+% Otros ejemplos son: 
+%
+% Para una inversion horizontal y desplazamiento de una unidad a la
+% izquierda, tenemos: 
+
+plot(tv,g(-t+1));
+xlabel('t'); ylabel('g(-t+1)'); 
+grid;
+%% 
+% Si sumamos las dos transformaciones anteriores, h(t)= g(2*t+1)+g(-t+1),
+% tenemos: 
+
+plot(tv,g(2*t+1)+g(-t+1));
+xlabel('t'); ylabel('h(t)'); 
+grid;
+
+
+%% 
+% _*INTEGRACION NUMERICA Y ESTIMACION DE LA SEÑAL DE ENERGÍA*_
+%
+% Para diversos cálculos nos ayudamos de la integración, y aunque ésta
+% parezca simple la integración numérica proporciona una buena manera de
+% verifcar resultados analíticos.
+%
+% Para ejemplificar, consideramos una señal simple: x(t)= e-t(u(t)-u(t-1))
+
+x= @(te) exp(-te).*((te>=0)&(te<1));
+te= (0:0.01:1);
+%% 
+% Definimos el valor de la energía
+
+E_x= sum(x(te).*x(te)*0.01);
+
+
+%% EJERCICIO 2
+% Para la señal x(t), se bosquejan cinco diferentes transformaciones.
+%
+% # x(t-4)
+% # x(t/1.5)
+% # x(-t)
+% # x(2t-4)
+% # x(2-t)
+% 
+% La función original x(t), es: 
+t1=(-10:0.1:10);
+    f1= @(t1) -t1.*((t1>=-4)&(t1<=0));
+    f2= @(t1) t1.*((t1>=0)&(t1<=2));
+ f3=@(t1) f1(t1)+f2(t1);   
+
+plot(t1,f3(t1));
+axis([-5 3 -1 4.5]);
+
+xlabel('t'); ylabel('x(t)'); grid;
+
+%% 
+% Ahora gráficamos cada una de las transformaciones propuestas
+
+%% 
+% Para a) x(t-4)
+
+plot(t1, f3(t1-4),'r');
+xlabel('t'); ylabel('x(t-4)'); grid;
+axis ([-1 7 -0.5 4.5]);
+
+%% 
+% Para b) x(t/1.5)
+plot(t1, f3(t1/1.5),'m');
+xlabel('t'); ylabel('x(t/1.5)'); grid;
+axis ([-8 5 -1.5 4.5]);
+
+%% 
+% Para c) x(-t)
+plot(t1, f3(-t1),'k');
+xlabel('t'); ylabel('x(-t)'); grid;
+axis ([-3 6 -0.5 4.5]);
+%% 
+% Para d) x(2*t-4)
+plot(t1, f3(2*t1-4),'g');
+xlabel('t'); ylabel('x(2t-4)'); grid;
+axis ([-1 5 -0.5 4.5]);
+%% 
+% Para e) x(2-t)
+plot(t1, f3(2-t1),'c');
+xlabel('t'); ylabel('x(2-t)'); grid;
+axis ([-3 9 -0.5 4.5]);
+
+%% EJERCICIO 3 
+%
+% Resuelve el problema 1.11-1, los ejes deben mostrarse en el origen además de la edición de tu preferencia.
+%
+% Proporcionar código en MATLAB y resultados que tracen la porción impar xo(t) de la función x(t)=2^−t cos(2πt)u(t−π ) en un intervalo de longitud adecuada utilizando un número adecuado de puntos.
+%
+% Se resolvio este problema del libro de Lathi (versión de clase).
+%%
+% Definición de la función x(t)
+t = linspace(0, 12, 1000);  % Definimos el intervalo de tiempo
+u = @(t) (t >= 0);          % Función escalón unitario
+x = @(t) 2.^(-t) .* cos(2*pi*t) .* u(t - pi);  % Definimos la función x(t)
+%%
+% Calculamos la porción impar xo(t)
+xo = @(t) 0.5 * (x(t) - x(-t));  % Porción impar de x(t)
+%%
+% Gráfico de xo(t)
+figure;
+plot(t, xo(t), 'b', 'LineWidth', 2);
+grid on;
+xlabel('t');
+ylabel('xo(t)');
+title('Porción impar de x(t)');
+axis([-2 4 -1 1]);  % Establecemos límites de los ejes
+ax = gca;  % Obtenemos los ejes actuales
+ax.XAxisLocation = 'origin';  % Movemos el eje x al origen
+ax.YAxisLocation = 'origin';  % Movemos el eje y al origen
+ax.Box = 'off';  % Quitamos el recuadro alrededor del gráfico
+ax.XAxis.TickLength = [0.02 0.02];  % Longitud de las marcas en el eje x
+ax.YAxis.TickLength = [0.02 0.02];  % Longitud de las marcas en el eje y
+ax.FontSize = 12;  % Tamaño de fuente
+
+%% EJERCICIO 4
+%
+%%
+% Se resolvio y grafico una sumatoria por medio de MATLAB y paython, la
+% sumatoria es:
+%
+% $$ x(t) = \sum_{k=1}^{10} cos(2\pi k t)$$
+%%
+% MATLAB
+% Se construyeron 4 graficas para 4 diferentes rangos de "t"
+%%
+% Subgráfico 1 
+% Para el rango t1
+t1 = linspace(-10,10,100); % Rango 1 de -10 a 10 de 1 en 1
+x1 = linspace(0,0,100);
+for k = 1:10
+x1= x1 + cos(2*pi*t1*k);
+end
+subplot(2, 2, 1); 
+plot(t1, x1);
+title("Grafica Rango t1")
+plano= gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on;
+%%
+% Subgráfico 2
+% Para el rango t2
+t2 = linspace(-5,5,100); % Rango 2 de -5 a 5 de 1 en 1
+x2 = linspace(0,0,100);
+for k = 1:10
+x2= x2 + cos(2*pi*t2*k);
+end
+subplot(2, 2, 2); 
+plot(t2, x2);
+title("Grafica Rango t2")
+
+
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+%%
+% Subgráfico 3
+% Para el rango t3
+t3 = linspace(0,20,100); % Rango 3 de 0 a 20 de 1 en 1
+x3 = linspace(0,0,100);
+for k = 1:10
+x3= x3 + cos(2*pi*t3*k);
+end
+subplot(2, 2, 3); 
+plot(t3, x3);
+title("Grafica Rango t3")
+
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+%%
+% Subgráfico 4
+% P+ara el rango t4
+t4 = linspace(-1, 1, 1000); % Rango 4 de -1 a 1 con 1000 elementos
+x4 = linspace(0,0,1000);
+for k = 1:10
+x4= x4 + cos(2*pi*t4*k);
+end
+subplot(2, 2, 4); 
+plot(t4, x4);
+title("Grafica Rango t4")
+
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+
+%% EJERCICIO 5
+%
+%%
+% Declaracion de funciones anonimas
+
+u = @(t) 1.0*(t>=0); t = -10:.001:10;
+x = @(t) exp(t*(1+2j*pi)).*u(-t);
+% Graficas para distintos valores de a(0.5, 1, 2)
+
+%Inciso a)
+subplot(1,3,1); plot(real(x(t)),imag(x(0.5*t)),'k-'); grid on
+xlabel('Re(x(t))'); ylabel('Im(x(0.5t))'); axis([-1 1 -1 1]);
+subplot(1,3,2); plot(real(x(t)),imag(x(t)),'k-'); grid on
+xlabel('Re(x(t))'); ylabel('Im(x(t))'); axis([-1 1 -1 1]);
+subplot(1,3,3); plot(real(x(t)),imag(x(2*t)),'k-'); grid on
+xlabel('Re(x(t))'); ylabel('Im(x(2t))'); axis([-1 1 -1 1]);
+%%
+% Declaracion de y(t) y su grafica
+
+%Inciso b)
+y = @(t) real(2*x((-5-t)/2));
+figure;
+plot(t,y(t),'k-'); axis([-10 10 -3 3]);
+grid on; xlabel('t');
+ ylabel( 'y(t)');
+ set(gca,'xtick',-10:5:10,'ytick',-2:0.5:2);
+%%
+% Usando integracion numerica para el calculo de enrgia de x(t)
+
+ %Inciso c)
+x2 = @(t) x(t).*conj(x(t)); Ex = integral(x2,-100,0);
+%%
+% usando integracion numerica para el calculo de energia de y(t)
+
+% Inciso d)
+ y2 = @(t) y(t).*conj(y(t));
+ Ey = integral(y2,-5,100);
+%%
+% Grafica de x(t) en [-10,10]
+
+% Inciso e)
+ figure;
+ plot(t,x(t),'k-'); grid on
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
