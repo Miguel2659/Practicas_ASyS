@@ -1,0 +1,411 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PRACTICA 3: SE&Ntilde;ALES EN TIEMPO DISCRETO</title><meta name="generator" content="MATLAB 9.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-03-25"><meta name="DC.source" content="pratica_4.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>PRACTICA 3: SE&Ntilde;ALES EN TIEMPO DISCRETO</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Integrantes</a></li><li><a href="#3">Objetivos</a></li><li><a href="#4">Introduccion.</a></li><li><a href="#8">Desarrollo</a></li><li><a href="#9">Ejercicio 1</a></li><li><a href="#13">EJERCICIO 2</a></li><li><a href="#21">Ejercicio 3</a></li><li><a href="#26">Ejercicio 4</a></li></ul></div><h2 id="1">Integrantes</h2><div><ul><li>Barrera Martinez Paola Angelica</li><li>Espino Chavez Brandon Daniel</li><li>Gonzalez Lopez Dani</li><li>Villavicencio Salinas Miguel Angel</li><li>Zetina Arellano Luis Enrique</li></ul></div><h2 id="3">Objetivos</h2><div><ul><li>Manipulaci&oacute;n b&aacute;sica de MATLAB</li><li>Gr&aacute;ficas de se&ntilde;ales reales y complejas discretas</li><li>Transformaci&oacute;n de se&ntilde;ales discretas (escalamientos y traslaciones)</li></ul></div><h2 id="4">Introduccion.</h2><p>Se hizo una investigacion para la resolucion del problema 3.11-2 por medio de python.</p><pre class="codeinput"><span class="comment">%El codigo quedo de la siguiente forma:</span>
+</pre><p><img vspace="5" hspace="5" src="Codigo.png" alt=""> </p><p>Se realizaron 3 graficas, la primer grafica de <img src="pratica_4_eq00385132984751852759.png" alt="$$f[n]$"> es:</p><p><img vspace="5" hspace="5" src="Grafica1.png" alt=""> </p><p>La segunda grafica de <img src="pratica_4_eq11631934003016077716.png" alt="$$f[2n]$">:</p><p><img vspace="5" hspace="5" src="Grafica2.png" alt=""> </p><pre class="codeinput"><span class="comment">%La tercer grafica de $$f[n/2]$</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% &lt;&lt;Grafica3.png&gt;&gt;</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+</pre><h2 id="8">Desarrollo</h2><h2 id="9">Ejercicio 1</h2><p>Se resolvio el problema 1.11-2, el cual en base a la funcion:</p><p><img src="pratica_4_eq01275647152546476086.png" alt="$$ f[n] = e^{-n/5} cos(\pi n/5) u[n]$$"></p><p>Se definde la funcion y el rango que tendra n.</p><pre class="codeinput">f = @(n) exp(-n/5).*cos(pi*n/5).*(n&gt;=0);
+n = -10:1:10;
+
+y = f(n);
+</pre><p>Segrafica la funcion para valores de <img src="pratica_4_eq00385132984751852759.png" alt="$$f[n]$"></p><pre class="codeinput">figure(1)
+stem(n, y);
+xlabel(<span class="string">'Eje x'</span>);
+ylabel(<span class="string">'Eje y'</span>);
+title(<span class="string">'Gr&aacute;fico '</span>);
+hold <span class="string">on</span>
+</pre><p>Se vuelve a hacer una funcion para poder graficar la funcion <img src="pratica_4_eq11631934003016077716.png" alt="$$f[2n]$"> y se grafica como se muestra acontinuacion:</p><pre class="codeinput">f = @(n) exp(-2*n/5).*cos(pi*2*n/5).*(n&gt;=0);
+n = -10:1:10;
+y = f(n*2);
+figure(2)
+stem(n, y);
+hold <span class="string">on</span>
+</pre><p>Por ultimo se modifica la funcion para que se pueda graficar la funcion <img src="pratica_4_eq04379502971620214257.png" alt="$$f[n/2]$"> sin problemas, como se muestra acontinuacion:</p><pre class="codeinput">f = @(n) exp(-(n/2)/5).*cos(pi*(n/2)/5).*(n&gt;=0);
+n = -10:1:10;
+y = f(n/2);
+figure(3)
+stem(n, y);
+</pre><img vspace="5" hspace="5" src="pratica_4_02.png" alt=""> <h2 id="13">EJERCICIO 2</h2><p>Para la grafica que se muestra, realiza las siguientes transformaciones:</p><p>a) x[-n]</p><p>b) x[n+6]</p><p>c) x[n-6]</p><p>d) x[3n]</p><p>e) x[n/3]</p><p>f) x[3-n]</p><p><b>La gr&aacute;fica original es</b></p><p>Tomamos a la funcion como dos diferentes, y despu&eacute;s las unimos como una misma funci&oacute;n</p><pre class="codeinput">n=-20:20;
+    f1= @(n) n.* ((n&gt;0)&amp;(n&lt;=3));
+    f2= @(n) (6-n).* ((n&gt;=4)&amp;(n&lt;=6));
+f= @(n) f2(n)+f1(n);
+
+stem(n,f(n)); grid; <span class="comment">%graficamos la se&ntilde;al discreta</span>
+axis ([-2 10 -1 4]); <span class="comment">% limitamos el tama&ntilde;o de la grafica, dando</span>
+<span class="comment">%  limites para los ejes</span>
+</pre><img vspace="5" hspace="5" src="pratica_4_03.png" alt=""> <p>Para el inciso a) x[-n]</p><pre class="codeinput">stem(n,f(-n),<span class="string">'r'</span>); grid;
+axis ([-8 2 -1 4]);
+</pre><img vspace="5" hspace="5" src="pratica_4_04.png" alt=""> <p>Para el inciso b) x[n+6]</p><pre class="codeinput">stem (n,f(n+6),<span class="string">'g'</span>); grid;
+axis ([-7 1 -1 4]);
+</pre><img vspace="5" hspace="5" src="pratica_4_05.png" alt=""> <p>Para el inciso c) x[n-6]</p><pre class="codeinput">stem (n, f(n-6), <span class="string">'b'</span>); grid;
+axis([5 13 -1 4]);
+</pre><img vspace="5" hspace="5" src="pratica_4_06.png" alt=""> <p>Para el inciso d) x[3n]</p><pre class="codeinput">n=[0,1,2];
+stem(n,f(3*n),<span class="string">'g'</span>); grid;
+axis([-2 3 -1 4])
+</pre><img vspace="5" hspace="5" src="pratica_4_07.png" alt=""> <p>Para el inciso e) x[n/3]</p><pre class="codeinput">n=0:3:18; <span class="comment">%Limitamos los valores para n, para que solo se grafiquen aquellos</span>
+<span class="comment">% multiplos de n</span>
+stem (n,f(n/3),<span class="string">'c'</span>); grid;
+axis([-1 20 -1 4]);
+</pre><img vspace="5" hspace="5" src="pratica_4_08.png" alt=""> <p>Para el inciso f) x[3-n]</p><pre class="codeinput">stem (n,f(3-n),<span class="string">'k'</span>); grid;
+axis([-5 5 -1 4])
+</pre><img vspace="5" hspace="5" src="pratica_4_09.png" alt=""> <h2 id="21">Ejercicio 3</h2><p>Supongamos que existe un vector x en MATLAB, correspondiente a una duraci&oacute;n finita. Se&ntilde;al DT x[n]</p><p>(a) Escriba una funci&oacute;n de MATLAB que, cuando pasa el vector x, calcula y devuelve Ex, la energ&iacute;a de x[n].</p><p>(b) Escriba una funci&oacute;n de MATLAB que, cuando pasa el vector x, calcula y devuelve Px, la potencia de x[n]. Supongamos que x[n] es peri&oacute;dico y ese vector x contiene datos para un n&uacute;mero entero de per&iacute;odos de x[n].</p><p>(a)</p><pre class="language-matlab"><span class="keyword">function</span> Ex = calcular_energia(x)
+Funci&oacute;n para <span class="string">calcular</span> <span class="string">la</span> <span class="string">energ&iacute;a</span> <span class="string">de</span> <span class="string">una</span> <span class="string">se&ntilde;al</span> <span class="string">discreta</span> <span class="string">finita</span> <span class="string">x[n]</span>
+Entrada:
+x: vector que <span class="string">representa</span> <span class="string">la</span> <span class="string">se&ntilde;al</span> <span class="string">discreta</span> <span class="string">finita</span>
+Salida:
+Ex: energ&iacute;a de <span class="string">la</span> <span class="string">se&ntilde;al</span>
+Calcula <span class="string">la</span> <span class="string">energ&iacute;a</span> <span class="string">como</span> <span class="string">la</span> <span class="string">suma</span> <span class="string">de</span> <span class="string">los</span> <span class="string">cuadrados</span> <span class="string">de</span> <span class="string">los</span> <span class="string">elementos</span> <span class="string">del</span> <span class="string">vector</span>
+Ex = sum(x.^2);
+<span class="keyword">end</span>
+</pre><p>(b)</p><pre class="language-matlab"><span class="keyword">function</span> Px = calcular_potencia(x)
+Funci&oacute;n para <span class="string">calcular</span> <span class="string">la</span> <span class="string">potencia</span> <span class="string">de</span> <span class="string">una</span> <span class="string">se&ntilde;al</span> <span class="string">discreta</span> <span class="string">finita</span> <span class="string">x[n]</span>
+Entrada:
+x: vector que <span class="string">representa</span> <span class="string">la</span> <span class="string">se&ntilde;al</span> <span class="string">discreta</span> <span class="string">finita</span>
+Salida:
+Px: potencia de <span class="string">la</span> <span class="string">se&ntilde;al</span>
+</pre><p>Calcula la potencia como la energ&iacute;a dividida por el n&uacute;mero de elementos en el vector multiplicado por el inverso del n&uacute;mero de per&iacute;odos</p><pre class="language-matlab">L = length(x); <span class="comment">% Longitud del vector x</span>
+periodo = L / numel(unique(x)); <span class="comment">% N&uacute;mero de muestras en un per&iacute;odo</span>
+Ex = calcular_energia(x); <span class="comment">% Energ&iacute;a de la se&ntilde;al</span>
+Px = Ex / L * (1 / periodo); <span class="comment">% Potencia&nbsp;de&nbsp;la&nbsp;se&ntilde;al</span>
+<span class="keyword">end</span>
+</pre><p>Para ejecutar se utiliza el siguiente codigo:</p><p>Definir un vector x[n]   x = [1 2 3 4 5];</p><pre class="codeinput"><span class="comment">% Calcular la energ&iacute;a de x[n]</span>
+<span class="comment">%   Ex = calcular_energia(x);</span>
+<span class="comment">%   disp(['La energ&iacute;a de la se&ntilde;al es: ', num2str(Ex)]);</span>
+
+<span class="comment">% Calcular la potencia de x[n]</span>
+<span class="comment">%   Px = calcular_potencia(x);</span>
+<span class="comment">%   disp(['La potencia de la se&ntilde;al es: ',num2str(Px)]);</span>
+</pre><h2 id="26">Ejercicio 4</h2><p>Calcular la energia de la se&ntilde;al f[n] de la figura utilizando las funciones del paso anterior.</p><p>La se&ntilde;al es:</p><pre class="codeinput">f=@(n) n.*(n&gt;=-3).*(n&lt;=3);
+n= -5:5;
+stem(n,f(n))
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="pratica_4_10.png" alt=""> <p>Mediante el codigo del paso 3 se calculo la energia de la se&ntilde;al f[n], se indican los valores del vector, y se manda llamar a la funcion "calcular energia"</p><pre class="codeinput">x = [-9 -6 -3 0 3 6 9];
+
+<span class="comment">% Calcular la energ&iacute;a de x[n]</span>
+Ex = calcular_energia(x);
+disp([<span class="string">'La energ&iacute;a de la se&ntilde;al es: '</span>, num2str(Ex)]);
+</pre><pre class="codeoutput">La energ&iacute;a de la se&ntilde;al es: 252
+</pre><p>Posteriormente de solicito calcular la potencia de una se&ntilde;al periodica f[n] por medio de la funcion "Calcular potencia".</p><p>La se&ntilde;al a la que se le calculo lo potencia es la mismo que la anterior pero con un periodo de: 12</p><pre class="codeinput">g=@(n) n.*(n&gt;=-3).*(n&lt;=3);
+k=@(n) (n+12).*(n&gt;=-15).*(n&lt;=-9);
+w=@(n) (n-12).*(n&gt;=9).*(n&lt;=15);
+f=@(n) g(n)+k(n)+w(n);
+n= -20:20;
+stem(n,f(n))
+grid <span class="string">on</span>
+
+x = [-9 -6 -3 0 3 6 9];
+
+<span class="comment">% Calcular la potencia de x[n]</span>
+Px = calcular_potencia(x);
+disp([<span class="string">'La potencia de la se&ntilde;al es: '</span>,num2str(Px)]);
+</pre><pre class="codeoutput">La potencia de la se&ntilde;al es: 36
+</pre><img vspace="5" hspace="5" src="pratica_4_11.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% PRACTICA 3: SEÑALES EN TIEMPO DISCRETO
+%
+%% Integrantes
+%%
+% 
+% * Barrera Martinez Paola Angelica
+% * Espino Chavez Brandon Daniel
+% * Gonzalez Lopez Dani
+% * Villavicencio Salinas Miguel Angel
+% * Zetina Arellano Luis Enrique
+% 
+%
+%% Objetivos
+% 
+% * Manipulación básica de MATLAB
+% * Gráficas de señales reales y complejas discretas
+% * Transformación de señales discretas (escalamientos y traslaciones)
+% 
+% 
+% 
+%% Introduccion.
+%
+% Se hizo una investigacion para la resolucion del problema 3.11-2 por
+% medio de python.
+%
+%El codigo quedo de la siguiente forma:
+%%
+% 
+% <<Codigo.png>>
+% 
+% Se realizaron 3 graficas, la primer grafica de $$f[n]$ es:
+%%
+% 
+% <<Grafica1.png>>
+% 
+% La segunda grafica de $$f[2n]$:
+%%
+% 
+% <<Grafica2.png>>
+% 
+%La tercer grafica de $$f[n/2]$
+%
+% 
+% <<Grafica3.png>>
+% 
+%
+%% Desarrollo
+%
+%% Ejercicio 1
+%
+% Se resolvio el problema 1.11-2, el cual en base a la funcion:
+%
+% $$ f[n] = e^{-n/5} cos(\pi n/5) u[n]$$
+%
+% Se definde la funcion y el rango que tendra n.
+%
+f = @(n) exp(-n/5).*cos(pi*n/5).*(n>=0);
+n = -10:1:10;
+
+y = f(n);
+%%
+% Segrafica la funcion para valores de $$f[n]$
+figure(1)
+stem(n, y);
+xlabel('Eje x');
+ylabel('Eje y');
+title('Gráfico ');
+hold on 
+%%
+% Se vuelve a hacer una funcion para poder graficar la funcion $$f[2n]$ y se
+% grafica como se muestra acontinuacion:
+f = @(n) exp(-2*n/5).*cos(pi*2*n/5).*(n>=0);
+n = -10:1:10;
+y = f(n*2);
+figure(2)
+stem(n, y);
+hold on
+%%
+% Por ultimo se modifica la funcion para que se pueda graficar la funcion
+% $$f[n/2]$ sin problemas, como se muestra acontinuacion:
+f = @(n) exp(-(n/2)/5).*cos(pi*(n/2)/5).*(n>=0);
+n = -10:1:10;
+y = f(n/2);
+figure(3)
+stem(n, y);
+%% EJERCICIO 2
+% Para la grafica que se muestra, realiza las siguientes transformaciones:
+%
+% a) x[-n]
+%
+% b) x[n+6]
+%
+% c) x[n-6]
+%
+% d) x[3n]
+%
+% e) x[n/3]
+%
+% f) x[3-n]
+%
+% *La gráfica original es* 
+%% 
+% Tomamos a la funcion como dos diferentes, y después las unimos como una
+% misma función
+n=-20:20; 
+    f1= @(n) n.* ((n>0)&(n<=3));
+    f2= @(n) (6-n).* ((n>=4)&(n<=6));
+f= @(n) f2(n)+f1(n); 
+
+stem(n,f(n)); grid; %graficamos la señal discreta
+axis ([-2 10 -1 4]); % limitamos el tamaño de la grafica, dando 
+%  limites para los ejes 
+%% 
+% Para el inciso a) x[-n]
+stem(n,f(-n),'r'); grid; 
+axis ([-8 2 -1 4]); 
+
+%% 
+% Para el inciso b) x[n+6]
+stem (n,f(n+6),'g'); grid;
+axis ([-7 1 -1 4]);
+%% 
+% Para el inciso c) x[n-6]
+stem (n, f(n-6), 'b'); grid;
+axis([5 13 -1 4]);
+%% 
+% Para el inciso d) x[3n]
+n=[0,1,2];
+stem(n,f(3*n),'g'); grid;
+axis([-2 3 -1 4])
+
+%% 
+% Para el inciso e) x[n/3]
+n=0:3:18; %Limitamos los valores para n, para que solo se grafiquen aquellos
+% multiplos de n
+stem (n,f(n/3),'c'); grid;
+axis([-1 20 -1 4]);
+%% 
+% Para el inciso f) x[3-n]
+
+stem (n,f(3-n),'k'); grid;
+axis([-5 5 -1 4])
+%% Ejercicio 3
+% Supongamos que existe un vector x en MATLAB, correspondiente a una duración finita. Señal DT x[n]
+%
+% (a) Escriba una función de MATLAB que, cuando pasa el vector x, calcula y devuelve Ex, la energía de x[n].
+%
+% (b) Escriba una función de MATLAB que, cuando pasa el vector x, calcula y devuelve Px, la potencia de x[n]. 
+% Supongamos que x[n] es periódico y ese vector x contiene datos para un número entero de períodos de x[n].
+%
+% (a)
+% 
+%   function Ex = calcular_energia(x)
+% Función para calcular la energía de una señal discreta finita x[n]
+% Entrada:
+%   x: vector que representa la señal discreta finita
+% Salida:
+%   Ex: energía de la señal
+% Calcula la energía como la suma de los cuadrados de los elementos del vector
+%   Ex = sum(x.^2);
+%   end
+% 
+% (b)
+% 
+%   function Px = calcular_potencia(x)
+% Función para calcular la potencia de una señal discreta finita x[n]
+% Entrada:
+%   x: vector que representa la señal discreta finita
+% Salida:
+%   Px: potencia de la señal
+%
+%%
+% Calcula la potencia como la energía dividida por el número de elementos en el vector
+% multiplicado por el inverso del número de períodos
+%%
+%   L = length(x); % Longitud del vector x
+%   periodo = L / numel(unique(x)); % Número de muestras en un período
+%   Ex = calcular_energia(x); % Energía de la señal
+%   Px = Ex / L * (1 / periodo); % Potencia de la señal
+%   end 
+%%
+% Para ejecutar se utiliza el siguiente codigo:
+%%
+% 
+% Definir un vector x[n]
+%   x = [1 2 3 4 5];
+
+% Calcular la energía de x[n]
+%   Ex = calcular_energia(x);
+%   disp(['La energía de la señal es: ', num2str(Ex)]);
+
+% Calcular la potencia de x[n]
+%   Px = calcular_potencia(x);
+%   disp(['La potencia de la señal es: ',num2str(Px)]);
+
+%% Ejercicio 4
+% Calcular la energia de la señal f[n] de la figura utilizando las funciones del
+% paso anterior.
+%
+% La señal es:
+%
+f=@(n) n.*(n>=-3).*(n<=3);
+n= -5:5;
+stem(n,f(n))
+grid on
+%%
+% Mediante el codigo del paso 3 se calculo la energia de la señal f[n], se
+% indican los valores del vector, y se manda llamar a la funcion "calcular
+% energia"
+x = [-9 -6 -3 0 3 6 9];
+
+% Calcular la energía de x[n]
+Ex = calcular_energia(x);
+disp(['La energía de la señal es: ', num2str(Ex)]);
+
+%% 
+% Posteriormente de solicito calcular la potencia de una señal periodica
+% f[n] por medio de la funcion "Calcular potencia".
+%
+% La señal a la que se le calculo lo potencia es la mismo que la anterior
+% pero con un periodo de: 12 
+
+g=@(n) n.*(n>=-3).*(n<=3);
+k=@(n) (n+12).*(n>=-15).*(n<=-9);
+w=@(n) (n-12).*(n>=9).*(n<=15);
+f=@(n) g(n)+k(n)+w(n);
+n= -20:20;
+stem(n,f(n))
+grid on
+
+x = [-9 -6 -3 0 3 6 9];
+
+% Calcular la potencia de x[n]
+Px = calcular_potencia(x);
+disp(['La potencia de la señal es: ',num2str(Px)]);
+
+##### SOURCE END #####
+--></body></html>
