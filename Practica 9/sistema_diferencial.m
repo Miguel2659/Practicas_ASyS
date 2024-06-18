@@ -1,0 +1,122 @@
+function sistema_diferencial(a, b, ciy, xi, t0)
+    % a coeficientes de las derivadas de la salida menor a mayor [a_0, ..., a_n]
+    % b coeficientes de las derivadas de la entrada menor a mayor [b_0, ..., b_m]
+    % ciy condiciones iniciales de la salida de menor a mayor [y(0), y(0)^(n-1)]
+    % xi función de entrada en terminos de la variable simbolica t previamente
+    % declarada en el command window
+    % t0 tiempo final para graficar la solucion, la derivada, y la segunda derivada 
+
+    close all;
+    tam = size(a);
+    tami = size(b);
+    syms y(t) Y(s) x(t) X(s) Yy;
+    syms edd edi;
+    edd = 0;
+    edi = 0;
+
+    % Construcción de la ecuación diferencial en el dominio de Laplace
+    for i = 1:tam(2)
+        edd = edd + a(i) * s^(i-1) * Y(s);
+        for k = 1:i-1
+            edd = edd - a(i) * (s^(i-1-k) * ciy(k));
+        end
+    end
+
+    for i = 1:tami(2)
+        edi = edi + b(i) * s^(i-1) * X(s);
+    end
+
+    disp('APLICAMOS TRANSFORMADA DE LAPLACE y subtituimos condiciones iniciales');
+    pretty(edd);
+    disp('=');
+    pretty(edi);
+
+    disp('SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA');
+    edi = subs(edi, X(s), laplace(xi));
+    pretty(edd);
+    disp('=');
+    pretty(edi);
+
+    disp('DESPEJAMOS Y(s)');
+    edd = collect(edd, Y(s));
+    edd = subs(edd, Y(s), Yy);
+    eq1 = edd == edi;
+    edd = solve(eq1, Yy);
+    disp('Y(s)=');
+    pretty(simplify(edd));
+
+    % Función de transferencia
+    G = edd / laplace(xi);
+    disp('La función de transferencia G(s) es:');
+    pretty(simplify(G));
+
+    % Respuesta al impulso
+    disp('Respuesta al impulso:');
+    y_impulse = ilaplace(G);
+    pretty(y_impulse);
+
+    % Respuesta a entrada cero (solución homogénea)
+    disp('Respuesta a entrada cero (solución homogénea):');
+    y_homog = ilaplace(subs(edd, X(s), 0));
+    pretty(y_homog);
+
+    % Respuesta a estado cero (solución particular)
+    disp('Respuesta a estado cero (solución particular):');
+    y_partic = ilaplace(edd);
+    pretty(y_partic);
+
+    % Respuesta total
+    disp('Respuesta total:');
+    y_total = y_homog + y_partic;
+    pretty(y_total);
+
+    % Respuesta total al escalón con condiciones iniciales 0
+    disp('Respuesta total al escalón con condiciones iniciales 0:');
+    y_step = ilaplace(G / s);
+    pretty(y_step);
+
+    % Graficar todas las respuestas
+    figure;
+    hFig = figure(1);
+    set(hFig, 'Position', [0 0 900 900]);
+    tiempo = 0:0.01:t0;
+
+    % Subplot 1: Respuesta al impulso
+    subplot(3, 2, 1);
+    fplot(y_impulse, [0, t0], 'LineWidth', 2);
+    title('Respuesta al impulso');
+    grid on;
+
+    % Subplot 2: Respuesta a entrada cero (solución homogénea)
+    subplot(3, 2, 2);
+    fplot(y_homog, [0, t0], 'LineWidth', 2);
+    title('Respuesta a entrada cero (solución homogénea)');
+    grid on;
+
+    % Subplot 3: Respuesta a estado cero (solución particular)
+    subplot(3, 2, 3);
+    fplot(y_partic, [0, t0], 'LineWidth', 2);
+    title('Respuesta a estado cero (solución particular)');
+    grid on;
+
+    % Subplot 4: Respuesta total
+    subplot(3, 2, 4);
+    fplot(y_total, [0, t0], 'LineWidth', 2);
+    title('Respuesta total');
+    grid on;
+
+    % Subplot 5: Respuesta total al escalón con condiciones iniciales 0
+    subplot(3, 2, 5);
+    fplot(y_step, [0, t0], 'LineWidth', 2);
+    title('Respuesta al escalón con condiciones iniciales 0');
+    grid on;
+
+end
+
+function mensaje(texto)
+    disp(' ');
+    disp(texto);
+    disp(' ');
+end
+
+
