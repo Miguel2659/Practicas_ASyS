@@ -1,0 +1,450 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PRACTICA 10. SIMULINK</title><meta name="generator" content="MATLAB 9.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-07-01"><meta name="DC.source" content="practica_10.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>PRACTICA 10. SIMULINK</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Integrantes del equipo.</a></li><li><a href="#2">Objetivos</a></li><li><a href="#3">PROBLEMA 1</a></li><li><a href="#5">Problema 1-a</a></li><li><a href="#6">PROBLEMA 2</a></li><li><a href="#8">PROBLEMA 3</a></li></ul></div><h2 id="1">Integrantes del equipo.</h2><div><ul><li>Gonzalez L&oacute;pez Dani</li><li>Villaricencio Salinas Miguel Angel</li><li>Zetina Arellano Luis Enrique</li></ul></div><h2 id="2">Objetivos</h2><div><ul><li>Conocer SIMULINK</li><li>Implementar simulaciones de ecuaciones diferenciales en Simulink</li></ul></div><h2 id="3">PROBLEMA 1</h2><p>Para las siguientes ecuaciones:</p><p><img vspace="5" hspace="5" src="Ecuacion a).jpg" alt=""> </p><p>Obtenga:</p><div><ol><li>La soluci&oacute;n anal&iacute;tica mediante transformada de laplace</li><li>La gr&aacute;fica de la soluci&oacute;n anal&iacute;tica, puede presentar diferentes intervalos en la grafica y acercamientos a la gr&aacute;fica seg&uacute;n considere necesario.</li><li>El diagrama de la para Simulink, indicando en caso de que no sea claro, el valor de cada par&aacute;metro en Simulink</li><li>La grafica de la soluci&oacute;n en Simulink, puede presentar diferentes intervalos en la grafica y acercamientos a la gr&aacute;fica seg&uacute;n considere necesario.</li><li>La gr&aacute;fica, en la misma figura, de la Simulaci&oacute;n y la soluci&oacute;n anal&iacute;tica.</li><li>En caso de que la entrada sea una funci&oacute;n senoidal:</li></ol></div><div><ul><li>Encuentre el escalamiento y desfasamiento de la respuesta en estado estacionario a partir de la evaluaci&oacute;n de la funci&oacute;n de transferencia (soluci&oacute;n anal&iacute;tica).</li><li>Encuentre el escalamiento y desfasamiento de la respuesta forzada a partir de las gr&aacute;ficas de Bode generadas en Matlab (soluci&oacute;n num&eacute;rica).</li><li>Verifique que concuerde la soluci&oacute;n anal&iacute;tica y la soluci&oacute;n num&eacute;rica</li></ul></div><h2 id="5">Problema 1-a</h2><p>Para la ecuacion dada, utilizamos un function definido como diferenciales para poderlo ejecturar (Agregado en el ap&eacute;ndice)</p><p>Hacemos el llamado a la funcion y con ello obtenemos la solucion anal&oacute;gica y las gr&aacute;ficas</p><pre class="codeinput">syms <span class="string">t</span>;
+diferenciales([6 5 1],1,[1 0],2*cos((2*t)-(pi/3))*heaviside(t),10)
+</pre><pre class="codeoutput"> 
+RESPUESTA A ESTADO CERO
+ 
+Respuesta a estado cero=
+cos(2 t)   sin(2 t) 5   sqrt(3) sin(2 t)             / sqrt(3)   1 \
+-------- + ---------- + ---------------- + exp(-2 t) | ------- - - |
+   52          52              52                    \    4      4 /
+
+               / 2 sqrt(3)    3 \   sqrt(3) cos(2 t) 5
+   - exp(-3 t) | --------- - -- | - ------------------
+               \     13      13 /           52
+
+ 
+RESPUESTA TOTAL
+ 
+y(t)=
+cos(2 t)   sin(2 t) 5   sqrt(3) sin(2 t)             / sqrt(3)   11 \
+-------- + ---------- + ---------------- + exp(-2 t) | ------- + -- |
+   52          52              52                    \    4       4 /
+
+               / 2 sqrt(3)   23 \   sqrt(3) cos(2 t) 5
+   - exp(-3 t) | --------- + -- | - ------------------
+               \     13      13 /           52
+
+ 
+RESPUESTA TOTAL AL ESCAL&Oacute;N UNITARIO CON CONDICIONES INICIALES 0
+ 
+y(t)=
+exp(-3 t)   exp(-2 t)   1
+--------- - --------- + -
+    3           2       6
+
+</pre><img vspace="5" hspace="5" src="practica_10_01.png" alt=""> <h2 id="6">PROBLEMA 2</h2><p>Un p&eacute;ndulo doble oscila en un plano vertical bajo la accion de la gravedad. Para desplazamiento peque&ntilde;os <img src="practica_10_eq05883467537480801594.png" alt="$\theta_1(t)$"> y <img src="practica_10_eq06360884827356943511.png" alt="$\theta_2(t)$">, es posible demostrar que las ecuaciones diferenciales del movimiento son:</p><div><ul><li><img src="practica_10_eq01058551955770902914.png" alt="$$ (m_1+m_2)l_1^2\ddot{\theta_1}(t)+m_2l_1l_2\ddot{\theta_2}(t)+(m_1+m_2)l_1g\theta_1(t)=0$"></li><li><img src="practica_10_eq15831906626059740425.png" alt="$$m_2l_2^2\ddot{\theta}_2+m_2l_1l_2\ddot{\theta_1}+m_2l_2g\theta_2(t)=0$"></li><li>donde  <img src="practica_10_eq14826395166570924532.png" alt="$m_1=0.1$">, <img src="practica_10_eq14843020832342987862.png" alt="$m_2=0.1$">, <img src="practica_10_eq16332617504463632864.png" alt="$l_1=l_2=1$">, <img src="practica_10_eq07373845301188183784.png" alt="$\theta_1(0)=-1$">, <img src="practica_10_eq16724258297238591817.png" alt="$\theta_2(0)=1$">, <img src="practica_10_eq17840566201799528655.png" alt="$\dot{\theta_1}(0)=0$"> <img src="practica_10_eq16642747512799582851.png" alt="$\dot{\theta_2}(0)=0$">.</li></ul></div><p><img vspace="5" hspace="5" src="Pendulo_Angulos.jpg" alt=""> </p><div><ol><li>Realiza la soluci&oacute;n s&iacute;mbolica y gr&aacute;fica las soluciones</li><li>Implementa las simulaci&oacute;n en Simulink, reporta las gr&aacute;ficas de las soluciones</li><li>Reporta las gr&aacute;ficas de las soluciones, num&eacute;rica y simb&oacute;lica en la misma figura, una para cada soluci&oacute;n.</li></ol></div><p>Para obtener la solucion simbolica y la gr&aacute;fica, tenemos el siguiente c&oacute;digo:</p><pre class="codeinput">syms <span class="string">m1</span> <span class="string">m2</span> <span class="string">l1</span> <span class="string">l2</span> <span class="string">tetha1(t)</span> <span class="string">tetha2(t)</span> <span class="string">dtetha1(t)</span> <span class="string">dtetha2(t)</span> <span class="string">s</span>
+assume([t m1 m2 l1 l2 ])
+g=9.81;
+dteh1=diff(tetha1,t,2);
+dteh2=diff(tetha2,t,2);
+eqn1=(m1+m2)*dteh1 + m2*l1*l2*dteh2 + (m1+m2)*l1*g*tetha1;
+eqn2=m2*(l2^2)*dteh2 + m2*l1*l2*dteh1 + m2*l2*g*tetha2;
+eqn1LT=laplace(eqn1,t,s)
+eqn2LT=laplace(eqn2,t,s)
+syms <span class="string">tetha1_LT</span> <span class="string">tetha2_LT</span>
+eqn1LT=subs(eqn1LT,[laplace(tetha1,t,s) laplace(tetha2,t,s)],[tetha1_LT tetha2_LT])
+eqn2LT=subs(eqn2LT,[laplace(tetha1,t,s) laplace(tetha2,t,s)],[tetha1_LT tetha2_LT])
+eqns=[eqn1LT eqn2LT]
+vars=[tetha1_LT tetha2_LT]
+[tetha1_LT, tetha2_LT]=solve(eqns,vars)
+<span class="comment">%%inversa de laplace</span>
+tetha1sol=ilaplace(tetha1_LT,s,t)
+tetha2sol=ilaplace(tetha2_LT,s,t)
+tetha2sol=simplify(tetha1sol)
+tetha2sol=simplify(tetha2sol)
+<span class="comment">%%condiciones iniciales</span>
+dtetha1(t)= diff(tetha1(t), t)
+dtetha2(t)= diff(tetha2(t), t)
+
+vars=[m1 m2 l1 l2 tetha1(0) tetha2(0) dtetha1(0) dtetha2(0)];
+values=[0.1 0.1 1 1 -1 1 0 0]
+tetha1sol=subs(tetha1sol,vars,values)
+tetha2sol=subs(tetha2sol,vars,values)
+<span class="comment">%</span>
+<span class="comment">% Graficas</span>
+subplot(2,2,1)
+fplot(tetha1sol,[0 15])
+title(<span class="string">'angulo 1'</span>)
+ylabel(<span class="string">'tetha1(t)'</span>)
+xlabel(<span class="string">'t'</span>)
+
+subplot(2,2,2)
+fplot(tetha2sol,[0 15])
+title(<span class="string">'Angulo 2'</span>)
+ylabel(<span class="string">'tetha2(t)'</span>)
+xlabel(<span class="string">'t'</span>)
+
+subplot(2,2,3)
+fplot(tetha1sol,[0 25])
+title(<span class="string">'Angulo 1'</span>)
+ylabel(<span class="string">'tetha1(t)'</span>)
+xlabel(<span class="string">'t'</span>)
+text(3,-0.1,<span class="string">'Transient'</span>)
+text(15,-0.07,<span class="string">'Steady State'</span>)
+
+subplot(2,2,4)
+fplot(tetha2sol,[2 25])
+title(<span class="string">'Angulo 2'</span>)
+ylabel(<span class="string">'tetha2(t)'</span>)
+xlabel(<span class="string">'t'</span>)
+text(3,0.35,<span class="string">'Transient'</span>)
+text(15,0.22,<span class="string">'Steady State'</span>)
+</pre><pre class="codeoutput"> 
+eqn1LT =
+ 
+(981*l1*(m1 + m2)*laplace(tetha1(t), t, s))/100 - (m1 + m2)*(s*tetha1(0) - s^2*laplace(tetha1(t), t, s) + subs(diff(tetha1(t), t), t, 0)) - l1*l2*m2*(s*tetha2(0) - s^2*laplace(tetha2(t), t, s) + subs(diff(tetha2(t), t), t, 0))
+ 
+ 
+eqn2LT =
+ 
+(981*l2*m2*laplace(tetha2(t), t, s))/100 - l2^2*m2*(s*tetha2(0) - s^2*laplace(tetha2(t), t, s) + subs(diff(tetha2(t), t), t, 0)) - l1*l2*m2*(s*tetha1(0) - s^2*laplace(tetha1(t), t, s) + subs(diff(tetha1(t), t), t, 0))
+ 
+ 
+eqn1LT =
+ 
+(981*l1*tetha1_LT*(m1 + m2))/100 - (m1 + m2)*(- tetha1_LT*s^2 + tetha1(0)*s + subs(diff(tetha1(t), t), t, 0)) - l1*l2*m2*(- tetha2_LT*s^2 + tetha2(0)*s + subs(diff(tetha2(t), t), t, 0))
+ 
+ 
+eqn2LT =
+ 
+(981*l2*m2*tetha2_LT)/100 - l2^2*m2*(- tetha2_LT*s^2 + tetha2(0)*s + subs(diff(tetha2(t), t), t, 0)) - l1*l2*m2*(- tetha1_LT*s^2 + tetha1(0)*s + subs(diff(tetha1(t), t), t, 0))
+ 
+ 
+eqns =
+ 
+[(981*l1*tetha1_LT*(m1 + m2))/100 - (m1 + m2)*(- tetha1_LT*s^2 + tetha1(0)*s + subs(diff(tetha1(t), t), t, 0)) - l1*l2*m2*(- tetha2_LT*s^2 + tetha2(0)*s + subs(diff(tetha2(t), t), t, 0)), (981*l2*m2*tetha2_LT)/100 - l2^2*m2*(- tetha2_LT*s^2 + tetha2(0)*s + subs(diff(tetha2(t), t), t, 0)) - l1*l2*m2*(- tetha1_LT*s^2 + tetha1(0)*s + subs(diff(tetha1(t), t), t, 0))]
+ 
+ 
+vars =
+ 
+[tetha1_LT, tetha2_LT]
+ 
+ 
+tetha1_LT =
+ 
+(100*(981*m1*subs(diff(tetha1(t), t), t, 0) + 981*m2*subs(diff(tetha1(t), t), t, 0) + 981*m1*s*tetha1(0) + 981*m2*s*tetha1(0) + 981*l1*l2*m2*subs(diff(tetha2(t), t), t, 0) + 100*l2*m1*s^3*tetha1(0) + 100*l2*m2*s^3*tetha1(0) + 100*l2*m1*s^2*subs(diff(tetha1(t), t), t, 0) + 100*l2*m2*s^2*subs(diff(tetha1(t), t), t, 0) - 100*l1^2*l2*m2*s^3*tetha1(0) - 100*l1^2*l2*m2*s^2*subs(diff(tetha1(t), t), t, 0) + 981*l1*l2*m2*s*tetha2(0)))/(962361*l1*m1 + 962361*l1*m2 + 98100*m1*s^2 + 98100*m2*s^2 + 10000*l2*m1*s^4 + 10000*l2*m2*s^4 + 98100*l1*l2*m1*s^2 + 98100*l1*l2*m2*s^2 - 10000*l1^2*l2*m2*s^4)
+ 
+ 
+tetha2_LT =
+ 
+(100*(981*l1^2*m1*subs(diff(tetha1(t), t), t, 0) + 981*l1^2*m2*subs(diff(tetha1(t), t), t, 0) + 981*l1*l2*m1*subs(diff(tetha2(t), t), t, 0) + 981*l1*l2*m2*subs(diff(tetha2(t), t), t, 0) + 981*l1^2*m1*s*tetha1(0) + 981*l1^2*m2*s*tetha1(0) + 100*l2*m1*s^3*tetha2(0) + 100*l2*m2*s^3*tetha2(0) + 100*l2*m1*s^2*subs(diff(tetha2(t), t), t, 0) + 100*l2*m2*s^2*subs(diff(tetha2(t), t), t, 0) - 100*l1^2*l2*m2*s^3*tetha2(0) - 100*l1^2*l2*m2*s^2*subs(diff(tetha2(t), t), t, 0) + 981*l1*l2*m1*s*tetha2(0) + 981*l1*l2*m2*s*tetha2(0)))/(962361*l1*m1 + 962361*l1*m2 + 98100*m1*s^2 + 98100*m2*s^2 + 10000*l2*m1*s^4 + 10000*l2*m2*s^4 + 98100*l1*l2*m1*s^2 + 98100*l1*l2*m2*s^2 - 10000*l1^2*l2*m2*s^4)
+ 
+ 
+tetha1sol =
+ 
+98100*m1*subs(diff(tetha1(t), t), t, 0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 981*l1*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*l1*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))), k, 1, 4) + 98100*m2*subs(diff(tetha1(t), t), t, 0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 981*l1*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*l1*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))), k, 1, 4) + 98100*m1*tetha1(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 98100*m2*tetha1(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 10000*l2*m1*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 10000*l2*m2*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 10000*l2*m1*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2)), k, 1, 4) + 10000*l2*m2*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2)), k, 1, 4) + 98100*l1*l2*m2*subs(diff(tetha2(t), t), t, 0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 981*l1*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*l1*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))), k, 1, 4) - 10000*l1^2*l2*m2*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2)), k, 1, 4) + 98100*l1*l2*m2*tetha2(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) - 10000*l1^2*l2*m2*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4)
+ 
+ 
+tetha2sol =
+ 
+98100*l1^2*m1*subs(diff(tetha1(t), t), t, 0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 981*l1*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*l1*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))), k, 1, 4) + 98100*l1^2*m2*subs(diff(tetha1(t), t), t, 0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 981*l1*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*l1*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))), k, 1, 4) + 10000*l2*m1*tetha2(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 10000*l2*m2*tetha2(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 10000*l2*m1*subs(diff(tetha2(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2)), k, 1, 4) + 10000*l2*m2*subs(diff(tetha2(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2)), k, 1, 4) + 98100*l1^2*m1*tetha1(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 98100*l1^2*m2*tetha1(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 98100*l1*l2*m1*subs(diff(tetha2(t), t), t, 0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 981*l1*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*l1*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))), k, 1, 4) + 98100*l1*l2*m2*subs(diff(tetha2(t), t), t, 0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^3 + 981*l1*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k) + 981*l1*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))), k, 1, 4) - 10000*l1^2*l2*m2*subs(diff(tetha2(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2)), k, 1, 4) + 98100*l1*l2*m1*tetha2(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) + 98100*l1*l2*m2*tetha2(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4) - 10000*l1^2*l2*m2*tetha2(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(200*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4)
+ 
+ 
+tetha2sol =
+ 
+(981*m1*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4)*subs(diff(tetha1(t), t), t, 0))/2 + (981*m2*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4)*subs(diff(tetha1(t), t), t, 0))/2 + (981*m1*tetha1(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4))/2 + (981*m2*tetha1(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4))/2 + 50*l2*m1*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4) + 50*l2*m2*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4) + 50*l2*m1*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2), k, 1, 4) + 50*l2*m2*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2), k, 1, 4) + (981*l1*l2*m2*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4)*subs(diff(tetha2(t), t), t, 0))/2 - 50*l1^2*l2*m2*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2), k, 1, 4) + (981*l1*l2*m2*tetha2(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4))/2 - 50*l1^2*l2*m2*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4)
+ 
+ 
+tetha2sol =
+ 
+(981*m1*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4)*subs(diff(tetha1(t), t), t, 0))/2 + (981*m2*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4)*subs(diff(tetha1(t), t), t, 0))/2 + (981*m1*tetha1(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4))/2 + (981*m2*tetha1(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4))/2 + 50*l2*m1*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4) + 50*l2*m2*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4) + 50*l2*m1*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2), k, 1, 4) + 50*l2*m2*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2), k, 1, 4) + (981*l1*l2*m2*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)), k, 1, 4)*subs(diff(tetha2(t), t), t, 0))/2 - 50*l1^2*l2*m2*subs(diff(tetha1(t), t), t, 0)*symsum((exp(root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)*t)*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m1 + 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l2*m2 - 200*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2*l1^2*l2*m2), k, 1, 4) + (981*l1*l2*m2*tetha2(0)*symsum(exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4))/2 - 50*l1^2*l2*m2*tetha1(0)*symsum((exp(t*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k))*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2)/(981*m1 + 981*m2 + 981*l1*l2*m1 + 981*l1*l2*m2 + 200*l2*m1*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 + 200*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2 - 200*l1^2*l2*m2*root(10000*l1^2*l2*m2*z^4 - 10000*l2*m2*z^4 - 10000*l2*m1*z^4 - 98100*l1*l2*m2*z^2 - 98100*l1*l2*m1*z^2 - 98100*m2*z^2 - 98100*m1*z^2 - 962361*l1*m2 - 962361*l1*m1, z, k)^2), k, 1, 4)
+ 
+ 
+dtetha1(t) =
+ 
+diff(tetha1(t), t)
+ 
+ 
+dtetha2(t) =
+ 
+diff(tetha2(t), t)
+ 
+
+values =
+
+  Columns 1 through 7
+
+    0.1000    0.1000    1.0000    1.0000   -1.0000    1.0000         0
+
+  Column 8
+
+         0
+
+ 
+tetha1sol =
+ 
+- 9810*symsum(exp(t*root(z^4 + (981*z^2)/25 + 962361/5000, z, k))/(200*(20*root(z^4 + (981*z^2)/25 + 962361/5000, z, k)^2 + 1962/5)), k, 1, 4) - 1000*symsum((exp(t*root(z^4 + (981*z^2)/25 + 962361/5000, z, k))*root(z^4 + (981*z^2)/25 + 962361/5000, z, k)^2)/(200*(20*root(z^4 + (981*z^2)/25 + 962361/5000, z, k)^2 + 1962/5)), k, 1, 4)
+ 
+ 
+tetha2sol =
+ 
+- (981*symsum(exp(t*root(z^4 + (981*z^2)/25 + 962361/5000, z, k))/(20*root(z^4 + (981*z^2)/25 + 962361/5000, z, k)^2 + 1962/5), k, 1, 4))/20 - 5*symsum((exp(t*root(z^4 + (981*z^2)/25 + 962361/5000, z, k))*root(z^4 + (981*z^2)/25 + 962361/5000, z, k)^2)/(20*root(z^4 + (981*z^2)/25 + 962361/5000, z, k)^2 + 1962/5), k, 1, 4)
+ 
+</pre><img vspace="5" hspace="5" src="practica_10_02.png" alt=""> <h2 id="8">PROBLEMA 3</h2><p>Del link proporcionado en las instrucciones donde se encuentras varias aplicaciones desarrolladas en Simulink, realice:</p><div><ol><li>Explique el problema y la implementaci&oacute;n</li></ol></div><p>El sistema de p&eacute;ndulo invertido consta de un p&eacute;ndulo r&iacute;gido montado en un carro que puede moverse a lo largo de una pista horizontal. La tarea es dise&ntilde;ar un controlador que aplique una fuerza al carro para mantener el p&eacute;ndulo en posici&oacute;n vertical a pesar de su tendencia natural a caer. El sistema se puede describir mediante las ecuaciones diferenciales de movimiento que relacionan la fuerza aplicada al carro con el movimiento del carro y el p&eacute;ndulo. Estas ecuaciones consideran la masa del carro y del p&eacute;ndulo, la longitud del p&eacute;ndulo, y las fuerzas gravitacionales y de fricci&oacute;n.</p><p>El diagrama de Simulink representa visualmente el sistema del p&eacute;ndulo invertido, incluyendo bloques para el modelo del sistema, el controlador, los sensores y los actuadores. Los bloques est&aacute;n conectados entre s&iacute; para formar un circuito cerrado de retroalimentaci&oacute;n.</p><p>Tenemos 4 diferentes componentes en el modelo:</p><div><ul><li>Carro y p&eacute;ndulo: Un bloque que representa la din&aacute;mica del carro y el p&eacute;ndulo. Este bloque toma como entrada la fuerza aplicada al carro y produce como salidas la posici&oacute;n del carro y el &aacute;ngulo del p&eacute;ndulo.</li><li>Controlador: Un bloque que calcula la fuerza a aplicar al carro basada en la retroalimentaci&oacute;n de la posici&oacute;n del carro y el &aacute;ngulo del p&eacute;ndulo. Este controlador puede ser un controlador PID o un controlador LQR.</li><li>Sensores: Bloques que miden la posici&oacute;n del carro y el &aacute;ngulo del p&eacute;ndulo. Estas mediciones se usan como retroalimentaci&oacute;n para el controlador.</li><li>Actuadores: Un bloque que aplica la fuerza calculada por el controlador al carro.</li></ul></div><div><ol><li>Reproduzca los resultados Utilizamos el siguiente codigo para hacer uso de la aplicaci&oacute;n PENDULO</li></ol></div><pre class="codeinput">open_system(<span class="string">'penddemo'</span>)
+simOut = sim(<span class="string">'penddemo'</span>);
+t = simOut.tout;
+x = simOut.logsout.getElement(<span class="string">'Cart Position'</span>).Values.Data;
+theta = simOut.logsout.getElement(<span class="string">'Pendulum Angle'</span>).Values.Data;
+
+figure;
+subplot(2,1,1);
+plot(t, x);
+title(<span class="string">'Posici&oacute;n del Carro'</span>);
+xlabel(<span class="string">'Tiempo (s)'</span>);
+ylabel(<span class="string">'Posici&oacute;n (m)'</span>);
+
+subplot(2,1,2);
+plot(t, theta);
+title(<span class="string">'&Aacute;ngulo del P&eacute;ndulo'</span>);
+xlabel(<span class="string">'Tiempo (s)'</span>);
+ylabel(<span class="string">'&Aacute;ngulo (rad)'</span>);
+
+<span class="comment">%</span>
+</pre><pre class="codeoutput error">The feature 'RTWTesting' has already been registered.
+</pre><p>Tenemos el siguiente modelo en SIMULINK</p><p><img vspace="5" hspace="5" src="Simulink_pendulo.jpg" alt=""> </p><p>As&iacute; como la aplicaci&oacute;n interactiva para el usuario donde vemos como funciona dicha aplicacion</p><p><img vspace="5" hspace="5" src="pendulo.jpg" alt=""> </p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% PRACTICA 10. SIMULINK
+%% Integrantes del equipo.
+% 
+% * Gonzalez López Dani
+% * Villaricencio Salinas Miguel Angel
+% * Zetina Arellano Luis Enrique
+%
+%%  Objetivos
+% * Conocer SIMULINK
+% * Implementar simulaciones de ecuaciones diferenciales en Simulink 
+
+%% PROBLEMA 1
+% Para las siguientes ecuaciones: 
+% 
+% 
+% <<Ecuacion a).jpg>>
+% 
+% 
+% Obtenga: 
+%
+% # La solución analítica mediante transformada de laplace
+% # La gráfica de la solución analítica, puede presentar diferentes intervalos en la grafica y acercamientos a la gráfica según considere necesario.
+% # El diagrama de la para Simulink, indicando en caso de que no sea claro, el valor de cada parámetro en Simulink
+% # La grafica de la solución en Simulink, puede presentar diferentes intervalos en la grafica y acercamientos a la gráfica según considere necesario.
+% # La gráfica, en la misma figura, de la Simulación y la solución analítica.
+% # En caso de que la entrada sea una función senoidal:
+%%
+% * Encuentre el escalamiento y desfasamiento de la respuesta en estado estacionario a partir de la evaluación de la función de transferencia (solución analítica).
+% * Encuentre el escalamiento y desfasamiento de la respuesta forzada a partir de las gráficas de Bode generadas en Matlab (solución numérica).
+% * Verifique que concuerde la solución analítica y la solución numérica
+
+%% Problema 1-a
+% Para la ecuacion dada, utilizamos un function definido como diferenciales
+% para poderlo ejecturar (Agregado en el apéndice)
+%
+% Hacemos el llamado a la funcion y con ello obtenemos la solucion
+% analógica y las gráficas
+syms t;
+diferenciales([6 5 1],1,[1 0],2*cos((2*t)-(pi/3))*heaviside(t),10)
+
+%% PROBLEMA 2 
+% Un péndulo doble oscila en un plano vertical bajo la accion de la
+% gravedad. Para desplazamiento pequeños $\theta_1(t)$ y $\theta_2(t)$, es
+% posible demostrar que las ecuaciones diferenciales del movimiento son: 
+%%
+% * $$ (m_1+m_2)l_1^2\ddot{\theta_1}(t)+m_2l_1l_2\ddot{\theta_2}(t)+(m_1+m_2)l_1g\theta_1(t)=0$
+% * $$m_2l_2^2\ddot{\theta}_2+m_2l_1l_2\ddot{\theta_1}+m_2l_2g\theta_2(t)=0$
+% * donde  $m_1=0.1$, $m_2=0.1$, $l_1=l_2=1$, $\theta_1(0)=-1$, $\theta_2(0)=1$, $\dot{\theta_1}(0)=0$ $\dot{\theta_2}(0)=0$.
+%
+% 
+% <<Pendulo_Angulos.jpg>>
+% 
+%
+% # Realiza la solución símbolica y gráfica las soluciones
+% # Implementa las simulación en Simulink, reporta las gráficas de las soluciones
+% # Reporta las gráficas de las soluciones, numérica y simbólica en la misma figura, una para cada solución.
+% 
+% Para obtener la solucion simbolica y la gráfica, tenemos el siguiente
+% código:
+syms m1 m2 l1 l2 tetha1(t) tetha2(t) dtetha1(t) dtetha2(t) s
+assume([t m1 m2 l1 l2 ])
+g=9.81;
+dteh1=diff(tetha1,t,2);
+dteh2=diff(tetha2,t,2);
+eqn1=(m1+m2)*dteh1 + m2*l1*l2*dteh2 + (m1+m2)*l1*g*tetha1;
+eqn2=m2*(l2^2)*dteh2 + m2*l1*l2*dteh1 + m2*l2*g*tetha2;
+eqn1LT=laplace(eqn1,t,s)
+eqn2LT=laplace(eqn2,t,s)
+syms tetha1_LT tetha2_LT
+eqn1LT=subs(eqn1LT,[laplace(tetha1,t,s) laplace(tetha2,t,s)],[tetha1_LT tetha2_LT])
+eqn2LT=subs(eqn2LT,[laplace(tetha1,t,s) laplace(tetha2,t,s)],[tetha1_LT tetha2_LT])
+eqns=[eqn1LT eqn2LT]
+vars=[tetha1_LT tetha2_LT]
+[tetha1_LT, tetha2_LT]=solve(eqns,vars)
+%%inversa de laplace
+tetha1sol=ilaplace(tetha1_LT,s,t)
+tetha2sol=ilaplace(tetha2_LT,s,t)
+tetha2sol=simplify(tetha1sol)
+tetha2sol=simplify(tetha2sol)
+%%condiciones iniciales
+dtetha1(t)= diff(tetha1(t), t)
+dtetha2(t)= diff(tetha2(t), t)
+
+vars=[m1 m2 l1 l2 tetha1(0) tetha2(0) dtetha1(0) dtetha2(0)];
+values=[0.1 0.1 1 1 -1 1 0 0]
+tetha1sol=subs(tetha1sol,vars,values)
+tetha2sol=subs(tetha2sol,vars,values)
+%
+% Graficas
+subplot(2,2,1)
+fplot(tetha1sol,[0 15])                      
+title('angulo 1')
+ylabel('tetha1(t)')
+xlabel('t')
+
+subplot(2,2,2)
+fplot(tetha2sol,[0 15])                        
+title('Angulo 2')
+ylabel('tetha2(t)')
+xlabel('t')
+
+subplot(2,2,3)
+fplot(tetha1sol,[0 25])                  
+title('Angulo 1')
+ylabel('tetha1(t)')
+xlabel('t')
+text(3,-0.1,'Transient')
+text(15,-0.07,'Steady State')
+
+subplot(2,2,4)
+fplot(tetha2sol,[2 25])                        
+title('Angulo 2')
+ylabel('tetha2(t)')
+xlabel('t')
+text(3,0.35,'Transient')
+text(15,0.22,'Steady State')
+
+
+
+%% PROBLEMA 3 
+% Del link proporcionado en las instrucciones donde se encuentras varias
+% aplicaciones desarrolladas en Simulink, realice:
+% 
+% # Explique el problema y la implementación  
+%
+% El sistema de péndulo invertido consta de un péndulo rígido montado en un carro que puede moverse a lo largo de una pista horizontal. La tarea es diseñar un controlador que aplique una fuerza al carro para mantener el péndulo en posición vertical a pesar de su tendencia natural a caer.
+% El sistema se puede describir mediante las ecuaciones diferenciales de movimiento que relacionan la fuerza aplicada al carro con el movimiento del carro y el péndulo. Estas ecuaciones consideran la masa del carro y del péndulo, la longitud del péndulo, y las fuerzas gravitacionales y de fricción.
+% 
+% El diagrama de Simulink representa visualmente el sistema del péndulo invertido, incluyendo bloques para el modelo del sistema, el controlador, los sensores y los actuadores.
+% Los bloques están conectados entre sí para formar un circuito cerrado de retroalimentación.
+% 
+% Tenemos 4 diferentes componentes en el modelo: 
+% 
+% * Carro y péndulo: Un bloque que representa la dinámica del carro y el péndulo. Este bloque toma como entrada la fuerza aplicada al carro y produce como salidas la posición del carro y el ángulo del péndulo.
+% * Controlador: Un bloque que calcula la fuerza a aplicar al carro basada en la retroalimentación de la posición del carro y el ángulo del péndulo. Este controlador puede ser un controlador PID o un controlador LQR.
+% * Sensores: Bloques que miden la posición del carro y el ángulo del péndulo. Estas mediciones se usan como retroalimentación para el controlador.
+% * Actuadores: Un bloque que aplica la fuerza calculada por el controlador al carro.
+%
+% # Reproduzca los resultados
+% Utilizamos el siguiente codigo para hacer uso de la aplicación PENDULO
+%
+open_system('penddemo')
+simOut = sim('penddemo');
+t = simOut.tout;
+x = simOut.logsout.getElement('Cart Position').Values.Data;
+theta = simOut.logsout.getElement('Pendulum Angle').Values.Data;
+
+figure;
+subplot(2,1,1);
+plot(t, x);
+title('Posición del Carro');
+xlabel('Tiempo (s)');
+ylabel('Posición (m)');
+
+subplot(2,1,2);
+plot(t, theta);
+title('Ángulo del Péndulo');
+xlabel('Tiempo (s)');
+ylabel('Ángulo (rad)');
+
+%
+%%
+% Tenemos el siguiente modelo en SIMULINK
+%
+% <<Simulink_pendulo.jpg>>
+% 
+%
+% Así como la aplicación interactiva para el usuario donde vemos como
+% funciona dicha aplicacion 
+%
+% 
+% <<pendulo.jpg>>
+% 
+%
+##### SOURCE END #####
+--></body></html>
